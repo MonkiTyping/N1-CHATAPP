@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Firebae</title>
+    <!--link rel="icon" href="../Images/favicon.png" sizes="16x16"-->
+    {{#if user_list}}
+        {{!-- user_list comes under /admin/users--}}
+        <link rel = "stylesheet" href = "../css/user_list.css">
+    {{else if client_chat}}
+        {{!-- client_chat comes under /chat/message--}}
+        <link rel = "stylesheet" href = "../css/chatpage.css" />
+    {{else if admin_chat}}
+        {{!-- obviously--}}
+        <link rel = "stylesheet" href = "../css/adminchat.css" />
+    {{/if}}
+    <link rel = "stylesheet" href = "../css/chat_box.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+     {{{body}}}
+</body>
+ 
+</html>

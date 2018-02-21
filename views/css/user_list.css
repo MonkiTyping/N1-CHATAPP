@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+
+
+* {margin: 0; padding: 0;}
+
+a
+{
+  color: #610303 !important;
+}
+body
+{
+  background: rgb(157, 206, 212) !important;
+}
+
+ul
+{
+  list-style-type: none;
+  width: 500px;
+}
+
+h3 
+{
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+
+li p 
+{
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+  font-style: italic;
+}
+
+li 
+{
+  padding: 1px;
+  overflow: auto;
+}
+
+li:hover 
+{
+  cursor: pointer;
+}
+
+.zoom 
+{
+  padding: 50px;
+  transition: transform .2s; /* Animation */  
+}
+
+.zoom:hover 
+{
+  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+#form-submit
+{
+  visibility: hidden;
+}
+
+
+
+

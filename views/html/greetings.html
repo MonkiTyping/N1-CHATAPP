@@ -1,0 +1,124 @@
+<html>
+	<head>
+		<title>Home</title>
+	</head>
+
+	<body style="background-color: rgb(26, 153, 111);">
+		<h2> Give yourself a name</h2>
+
+		<form id="unique" method="post" action="#">
+			<input style='border: 2px solid saddlebrown; border-radius: 4px;width: 40%;padding: 8px 12px; margin: 6px 0; box-sizing: border-box;' type='text' id = "ids" name='ids' placeholder="Enter a weird as fuck but unique handle" /><br/>
+			<input style= "padding: 10px 16px; margin: 8px 0;box-sizing: border-box;" type='submit' id ="submit" value='Submit' />
+		</form>
+
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-messaging.js"></script>
+	<script>
+		$('#unique').submit(function(e)
+		{
+			e.preventDefault();
+			var userId = $('#ids').val()
+			console.log(userId)
+			$.ajax(
+			{
+				url: "usernames",
+				method: "post",
+				data: {"userId": userId},
+				success: function(data)
+				{
+					//New user
+					alert("Taking you to chat")
+					if (data == "new")
+					{
+						//Registering the new user
+						var config = 
+						{
+							apiKey: "AIzaSyCkYQpBbWHJFaoIQvYFFuU0ZNXH4cG3B7o",
+							authDomain: "chatapp4nis21.firebaseapp.com",
+							databaseURL: "https://chatapp4nis21.firebaseio.com",
+							projectId: "chatapp4nis21",
+							storageBucket: "chatapp4nis21.appspot.com",
+							messagingSenderId: "620228335142"
+						};
+
+						firebase.initializeApp(config);
+						const messaging = firebase.messaging();
+
+						messaging.requestPermission()
+						.then(function()
+						{
+							console.log("Notification Permission Granted");
+							return messaging.getToken()
+						})
+							.then(function(currentToken)
+							{
+								console.log("Current Token is ",currentToken)
+								$.ajax(
+								{
+									url: "register",
+									method: "post",
+									data:
+									{
+										userId: userId,
+										devId: currentToken
+									},
+									success: function()
+									{
+										var form = $('<form action = "message" method = "post">'+'<input type="hidden" name="userId" value ="'+userId+'"/>'+'</form>')
+										$('body').append(form)
+										form.submit();  
+									}
+								})
+							})
+							.catch(function(err)
+							{
+								console.log("Unable to get permission to notify\n",err)
+							})
+
+						messaging.onTokenRefresh(function()
+						{
+							messaging.getToken()
+							.then(function(refreshedToken)
+							{
+								console.log("Token refreshed")
+								$.ajax(
+								{
+									url: "register",
+									method: "post",
+									data:
+									{
+										userId: userId,
+										devId: currentToken
+									},
+									success: function()
+									{
+										var form = $('<form action = "message" method = "post">'+'<input type="hidden" name="userId" value ="'+userId+'"/>'+'</form>')
+										$('body').append(form)
+										form.submit();  
+									}
+								})
+							})
+							.catch(function(err)
+							{
+								console.log("Unable to refresh token")
+							})
+						})
+					}
+					else if (data == "exists")
+					{
+						//Open up the chat with messages loaded
+						var form = $('<form action = "message" method = "post">'+'<input type="hidden" name="userId" value ="'+userId+'"/>'+'</form>')
+						$('body').append(form)
+						form.submit();
+					}
+				},
+				error: function(err)
+				{
+					console.error(err)
+				}
+			})
+		});
+	</script>
+</html>

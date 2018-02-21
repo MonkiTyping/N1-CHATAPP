@@ -1,0 +1,7 @@
+{
+    "name": "Vendor Chat",
+    "short_name": "N:1 Chat",
+    "display": "standalone",
+    "orientation": "portrait",
+    "gcm_sender_id": "103953800507"
+}

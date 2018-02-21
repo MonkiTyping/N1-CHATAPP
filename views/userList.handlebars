@@ -1,0 +1,118 @@
+<div class = 'users'>
+	<ul >
+		{{#each user_list}}
+		
+			<!--<li class="zoom">-->
+				{{#if (excludeAdmin userId) }}
+					<li class="zoom">
+						<h3><a class="id-user">{{userId}}</a></h3>
+						<h3>{{user}}</h3>
+						{{#if read}}
+							<p style='font-style:normal;font-size:15px;'>No</p>
+						{{else}}
+							<p style='color:darkred;font-weight:700;'>NEW MSG</p>
+						{{/if}}
+					</li>
+				{{/if}}
+			</li>
+			<hr>
+		{{/each}}
+	</ul>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-messaging.js"></script>
+	
+<script>
+
+	$(document).ready(function()
+	{
+		var config = 
+		{
+			apiKey: "AIzaSyCkYQpBbWHJFaoIQvYFFuU0ZNXH4cG3B7o",
+			authDomain: "chatapp4nis21.firebaseapp.com",
+			databaseURL: "https://chatapp4nis21.firebaseio.com",
+			projectId: "chatapp4nis21",
+			storageBucket: "chatapp4nis21.appspot.com",
+			messagingSenderId: "620228335142"
+		};
+
+		firebase.initializeApp(config);
+		const messaging = firebase.messaging();
+
+		messaging.requestPermission()
+		.then(function()
+		{
+			console.log("Notification Permission Granted");
+			return messaging.getToken()
+		})
+			.then(function(currentToken)
+			{
+				console.log("Current Token is ",currentToken)
+				$.ajax(
+				{
+					"url": 'register',
+					"method": "post",
+					"data": {"devId": currentToken},
+					"success": function()
+					{
+						console.log("Successfully registered")
+					}
+
+				})
+			})
+		.catch(function(err)
+		{
+			console.log("Unable to get permission to notify\t",err)
+		})
+
+		messaging.onTokenRefresh(function()
+		{
+			messaging.getToken()
+			.then(function(refreshedToken)
+			{
+				console.log("Token refreshed")
+				$.ajax(
+				{
+					"url": 'register',
+					"method": "post",
+					"data": {"devId": refreshedToken,refresh: "yes"},
+					"success": function()
+					{
+						console.log("Successfully registered")
+					}
+
+				})
+			})
+			.catch(function(err)
+			{
+				console.log("Unable to refresh token")
+			})
+		})
+	});
+
+	$('.id-user').click(function(e)
+	{
+		e.preventDefault();
+		console.log("Clicked on the USER-ID")
+		var userId = e.target.text
+
+		$.ajax(
+		{
+			"url": "read_status",
+			"method": "get",
+			"data": {userId: userId },
+			"success": function()
+			{
+				console.log("Updated status")
+				var userId = e.target.text
+				var form = $("<form method='post' action='chat'>"+"<input type='hidden' name='userId' value="+userId+" />"+"<input type = 'submit' id='form-submit' value = 'submit' />"+"</form>")
+				$('body').append(form)
+				form.submit()
+			}
+		})
+		
+	})
+</script>

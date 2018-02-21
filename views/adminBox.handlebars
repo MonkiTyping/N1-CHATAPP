@@ -1,0 +1,101 @@
+<div id="live-chat">
+	<header class="clearfix">
+		<h4>{{userId}}</h4>
+	</header>
+	
+	<div class="chat">
+
+		<div class="chat-history">
+
+			{{#each texts}}
+				{{#if isAdmin}}
+					<div class="chat-message clearfix">
+						<div class="chat-message-content clearfix">			
+							<h5>VENDOR_NAME</h5>
+							<p>{{message}}</p>
+							<span class="chat-time">{{formatDate time}}</span>
+						</div>
+					</div>
+				<hr>
+				{{else}}
+				<div class="chat-message clearfix">
+					
+					<div class="chat-message-content clearfix">
+						<h5>{{userId}}</h5>
+						<p>{{message}}</p>
+						<span class="chat-time">{{formatDate time}}</span>
+					</div>
+				</div>
+				<hr>
+				{{/if}}
+
+			{{/each}}
+
+		</div>
+
+		<form id="msg" action="#" method="post">
+			<fieldset >
+				<input type="text" id="chatmsg" placeholder="Type your message…" autofocus>
+				<input type="submit" value="Enter">
+			</fieldset>
+		</form>
+	
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-messaging.js"></script>
+
+<script>
+	// Initialize Firebase
+var config = 
+{
+	apiKey: "AIzaSyCkYQpBbWHJFaoIQvYFFuU0ZNXH4cG3B7o",
+	authDomain: "chatapp4nis21.firebaseapp.com",
+	databaseURL: "https://chatapp4nis21.firebaseio.com",
+	projectId: "chatapp4nis21",
+	storageBucket: "chatapp4nis21.appspot.com",
+	messagingSenderId: "620228335142"
+};
+
+firebase.initializeApp(config);
+const messaging = firebase.messaging();
+
+messaging.onMessage(function(data)
+{
+	//Handle event where user has received a message
+	var message = "Received new message for ADMIN"
+	alert(message)
+	window.location.reload()  
+});	
+
+
+</script>
+
+<script>
+	//Handle event where user is sending message to ADMIN
+		$('#msg').submit(function(e)
+		{
+			e.preventDefault();
+			var message = $('#chatmsg').val()
+			$.ajax(
+				{
+					url:"messages",
+					method: "post",
+					data: 
+					{
+						"message": message,
+						"receiver": '{{userId}}'
+					},
+					success: function(data)
+					{
+						//Reload only the chat box
+						window.location.reload()
+					}
+				})
+		});
+</script>
+<script src="/js/jquery.js"></script>
+<!--<script src="/js/firebae.js"></script>-->
+
