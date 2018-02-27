@@ -1,7 +1,7 @@
 var admin = require('firebase-admin')
+//Generate your serviceAccount key by navigating to Firebase Console and copy pasting the keys at root, /keys/serviceAccountKey.json
 var serviceAccount = require('../key/serviceAccountKey.json')
-var make = require('../routes/fb_client')
-var send_notification = make.send_notification 
+ 
 
 //Connect to firebase
 var app = admin.initializeApp(

@@ -1,17 +1,71 @@
 <html>
 	<head>
 		<title>Home</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 	</head>
 
-	<body style="background-color: rgb(26, 153, 111);">
-		<h2> Give yourself a name</h2>
+	
 
-		<form id="unique" method="post" action="#">
+		<!--<form id="unique" method="post" action="#">
 			<input style='border: 2px solid saddlebrown; border-radius: 4px;width: 40%;padding: 8px 12px; margin: 6px 0; box-sizing: border-box;' type='text' id = "ids" name='ids' placeholder="Enter a weird as fuck but unique handle" /><br/>
 			<input style= "padding: 10px 16px; margin: 8px 0;box-sizing: border-box;" type='submit' id ="submit" value='Submit' />
 		</form>
 
+			
+		
+	</body>-->
+
+	<body style="background-color: rgb(25, 92, 70);">
+			<div class="container ">
+			
+				<div class="row">
+					<div class="col-sm-4">
+	
+					</div>
+					<div class="col-sm-4 well">
+							<form class="form-group" action="#" method="post" id="unique">
+									<div class="row">
+										<div class="col-sm-12">
+											<h1 style="color:rgb(100, 22, 8)">CHAT APP</h1>
+											<p style="color:red; text-align:justify">
+												If it's your first time chatting, Please enter a unique userId.
+											</p>
+											<p style="color:red; text-align:justify">
+												Else, Type in the ID you have used before to continue that chat.
+											</p> 
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group input-group">
+												<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+												<input id="ids" type="text" name="ids" class="form-control input-lg" 
+													placeholder="Please enter your userId*" required="required" >
+											</div>
+										</div>
+									</div>
+									<br>
+									<div class="row">
+										<div class="col-sm-12" >
+											<input type="submit" style="float:right" class="btn btn-default btn-md btn-send btn-lg" name="submit" value="Start Chatting"/> 
+										</div>
+									</div>
+								</form>
+						   </div>
+							<div class="col-sm-1"></div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						
+					</div>
+				</div>
+			</div>
+				  
 	</body>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-messaging.js"></script>
@@ -117,6 +171,8 @@
 				error: function(err)
 				{
 					console.error(err)
+					var err_message = err.statusText
+					alert(err_message)
 				}
 			})
 		});

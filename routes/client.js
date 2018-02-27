@@ -114,11 +114,11 @@ router.post('/register',(req,res)=>
             //If device ID is already registered, Don't perform any action
             //Remove this for testing
             //Since I am using a single system, All the device-IDs are registered to this system
-            else if (found)
-            {
-                console.log("User-Device exists")
-                return res.status(204).send("Device exists")
-            }
+            //else if (found)
+            //{
+            //    console.log("User-Device exists")
+            //    return res.status(204).send("Device exists")
+            //}
             else
             {
                 var new_user = new Users(
@@ -156,7 +156,7 @@ router.post('/messages',function(req,res)
     })
 
     //define notification
-    var title = "Message for Vendor"
+    var title = "Message for "+process.env.VENDOR_NAME
     var notification = 
     {
         "notification":
@@ -180,8 +180,10 @@ router.post('/messages',function(req,res)
         else
         {
             //May have to be find
-            Users.findOne({"userId": "ADMIN"},function(err,found)
-            { //users=ADMIN can be  > 1
+            var administrator = process.env.ADMIN_ID
+            Users.findOne({"userId": administrator},function(err,found)
+            { 
+                //users=ADMIN can be  > 1
                 if (err)
                 {
                     console.error(err)

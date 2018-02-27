@@ -3,60 +3,51 @@
 
 * {margin: 0; padding: 0;}
 
-a
-{
-  color: #610303 !important;
+body{
+  background:#eee;    
 }
-body
-{
-  background: rgb(157, 206, 212) !important;
+.main-box.no-header {
+  padding-top: 20px;
 }
-
-ul
-{
-  list-style-type: none;
-  width: 500px;
-}
-
-h3 
-{
-  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
-}
-
-
-li p 
-{
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
-  font-style: italic;
+.main-box {
+  background: #FFFFFF;
+  -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
+  -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
+  -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
+  -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
+  box-shadow: 1px 1px 2px 0 #CCCCCC;
+  margin-bottom: 16px;
+  -webikt-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
-li 
-{
-  padding: 1px;
-  overflow: auto;
+.label {
+  border-radius: 3px;
+  font-size: 0.875em;
+  font-weight: 600;
 }
 
-li:hover 
+.user-list tbody td .user-link
 {
-  cursor: pointer;
+  display: block;
+  font-size: 1.25em;
+  padding-top: 3px;
+  margin-left: 60px;
+}
+a 
+{
+  color: #550b0b !important;
+  outline: none!important;
 }
 
-.zoom 
-{
-  padding: 50px;
-  transition: transform .2s; /* Animation */  
-}
 
-.zoom:hover 
-{
-  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+.table tbody tr td {
+  font-size: 0.875em;
+  vertical-align: middle;
+  border-top: 1px solid #e7ebee;
+  padding: 12px 8px;
 }
-
-#form-submit
-{
-  visibility: hidden;
-}
-
 
 
 

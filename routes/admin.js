@@ -17,9 +17,13 @@ var helper = Handlebars.registerHelper("formatDate", function(datetime,format)
     return timestamp
 });
 
+const administrator = process.env.ADMIN_ID
+const administratorName = process.env.VENDOR_NAME
+
 var helper_admin = Handlebars.registerHelper('excludeAdmin',function(user,options)
 {
-    if (user != "ADMIN")
+    //if (user != "ADMIN")
+    if (user != administrator)
     {
         return true
     }
@@ -28,6 +32,7 @@ var helper_admin = Handlebars.registerHelper('excludeAdmin',function(user,option
         return false
     }
 })
+
 var Chats = require('../models/chatModel')
 var Users = require('../models/userModel')
 var Send = require('../routes/pusher')
@@ -62,7 +67,7 @@ router.post('/register',function(req,res)
 
     if (req.body.refresh == "yes")
     {
-        Users.updateOne({"user": "ADMIN"},{"$set":{"devId":devId}},function(err,chaged)
+        Users.updateOne({"user": administrator},{"$set":{"devId":devId}},function(err,chaged)
         {
             if (err) 
             {
@@ -95,8 +100,8 @@ router.post('/register',function(req,res)
             {
                 var admin = new Users
                 ({
-                    user: "ADMIN", //Market-Vendor
-                    userId: "ADMIN",
+                    user: administratorName, //Market-Vendor
+                    userId: administrator,
                     devId: devId
                 })
                 admin.save(function(err,safe)
@@ -147,7 +152,7 @@ router.post('/messages',function(req,res)
                 "notification":
                 {
                     "tag": "chat_collapsed",
-                    "title": "VENDOR_NAME",
+                    "title": administratorName,
                     "body": message,
                     "collapse_key": 'true',
                     "icon" : "../mf.jpg"

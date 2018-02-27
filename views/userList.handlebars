@@ -1,25 +1,64 @@
-<div class = 'users'>
-	<ul >
+<!--<div class = "users">
+	<ul class = "w3-ul w3-border">
 		{{#each user_list}}
-		
-			<!--<li class="zoom">-->
-				{{#if (excludeAdmin userId) }}
-					<li class="zoom">
-						<h3><a class="id-user">{{userId}}</a></h3>
-						<h3>{{user}}</h3>
-						{{#if read}}
-							<p style='font-style:normal;font-size:15px;'>No</p>
-						{{else}}
-							<p style='color:darkred;font-weight:700;'>NEW MSG</p>
-						{{/if}}
-					</li>
-				{{/if}}
-			</li>
-			<hr>
+			{{#if (excludeAdmin userId) }}
+				<li class = "zoom">
+					<h3><a class = "id-user">{{userId}}</a></h3>
+					<h3>{{user}}</h3>
+					{{#if read}}
+						<p style='font-style:normal;font-size:15px;'>No</p>
+					{{else}}
+						<p style='color:darkred;font-weight:700;'>NEW MSG</p>
+					{{/if}}
+				</li>
+			{{/if}}
 		{{/each}}
 	</ul>
-
-</div>
+</div>-->
+<body style="background-color: rgb(102, 206, 197);" >
+	
+	<h2 style="position:relative;left: 50px;"> ALL THE STUPID FUCKERS</h2>
+	<div class="container bootstrap snippet">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="main-box no-header clearfix">
+					<div class="main-box-body clearfix">
+						<div class="table-responsive">
+							<table class="table user-list">
+								<thead>
+									<tr>
+										<th><span>User</span></th>
+										<th class="text-center"><span>Status</span></th>
+										<th>&nbsp;</th>
+									</tr>
+								</thead>
+								<tbody>
+									{{#each user_list}}
+										{{#if (excludeAdmin userId) }}
+											<tr>
+												<td>
+													<!--<a href="#" class="user-link">YOU SUCK</a>-->
+													<h3><a class="id-user">{{userId}}</a></h3>
+												</td>
+												<td class="text-center">
+												{{#if read}}
+													<span class="label label-default">No</span>
+												{{else}}
+													<span style="'color:darkred;font-weight:700;" class="label label-default">NEW MESSAGE</span>
+												{{/if}}
+												</td>
+											</tr>
+										{{/if}}
+									{{/each}}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
@@ -91,6 +130,14 @@
 				console.log("Unable to refresh token")
 			})
 		})
+
+		messaging.onMessage(function(data)
+		{
+			//Handle event where user has received a message
+			var message = "Received new message for ADMIN"
+			alert(message)
+			window.location.reload()  
+		});	
 	});
 
 	$('.id-user').click(function(e)
