@@ -27,6 +27,7 @@ IMPORTANT: Each client that uses firebase has a device ID unique to the system. 
 a few changes to the logic OR by replicating requests using cURL or POSTMan
 
 The application consists of 
+
 * A page for the user to register and send messages to the admin and receive messages from admin
 
 * A page for admin to view all user and whether anyone sent him a message
