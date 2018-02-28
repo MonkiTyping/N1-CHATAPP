@@ -31,7 +31,7 @@ a few changes to the logic OR by replicating requests using cURL or POSTMan
 
 ### Overview ###
 
-The app works using the following pages.
+The app works using the following pages
 
 A page for the users to register
 * This page has been created to identify the users uniquely. You can use any pre-existing identification that the user is already registered with.
@@ -44,4 +44,4 @@ A page for the ADMINISTRATOR to view all the users and if he has any messages
 * As described, a list of users are displayed with clear indicators if he/she has sent a message.
 * When the admin clicks on any user to view the messages he is redirected to
 
-A page for the ADMINISTRATOR to read all the messages with the particular user.
+A page for the ADMINISTRATOR to read all the messages with the particular user
