@@ -33,15 +33,15 @@ a few changes to the logic OR by replicating requests using cURL or POSTMan
 
 The app works using the following pages.
 
-1 A page for the users to register
+A page for the users to register
 * This page has been created to identify the users uniquely. You can use any pre-existing identification that the user is already registered with.
 
-2 A page for the users to send a message
+A page for the users to send a message
 * This page opens up to a chatbox. If the user has keyed in a message previously, He/she will be greeted to it.
 * Otherwise, The page opens up to an empty chatbox.
 
-3 A page for the ADMINISTRATOR to view all the users and if he has any messages
+A page for the ADMINISTRATOR to view all the users and if he has any messages
 * As described, a list of users are displayed with clear indicators if he/she has sent a message.
 * When the admin clicks on any user to view the messages he is redirected to
 
-4 A page for the ADMINISTRATOR to read all the messages with the particular user.
+A page for the ADMINISTRATOR to read all the messages with the particular user.
