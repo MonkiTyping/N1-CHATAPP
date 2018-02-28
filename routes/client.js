@@ -114,11 +114,11 @@ router.post('/register',(req,res)=>
             //If device ID is already registered, Don't perform any action
             //Remove this for testing
             //Since I am using a single system, All the device-IDs are registered to this system
-            //else if (found)
-            //{
-            //    console.log("User-Device exists")
-            //    return res.status(204).send("Device exists")
-            //}
+            else if (found)
+            {
+               console.log("User-Device exists")
+               return res.status(204).send("Device exists")
+            }
             else
             {
                 var new_user = new Users(
@@ -198,19 +198,18 @@ router.post('/messages',function(req,res)
                 {
                     var devId = found.devId
                     Send(devId,notification)
-                }
-            })
-            Users.findOneAndUpdate({"userId": unique_id},{"$set":{"read":false}},function(err,updated)
-            {
-                if (err) 
-                {
-                    console.error("Error updating read status\n",err)
-                    return res.status(500)
-                }
-                else
-                {
-                    res.status(200).send("sent")
-                    
+                    Users.findOneAndUpdate({"userId": unique_id},{"$set":{"read":false}},function(err,updated)
+                    {
+                        if (err) 
+                        {
+                            console.error("Error updating read status\n",err)
+                            return res.status(500)
+                        }
+                        else
+                        {
+                            res.status(200).send("sent")
+                        }
+                    })
                 }
             })
         }
