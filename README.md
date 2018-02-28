@@ -28,19 +28,7 @@ Firebase runs ONLY on SECURE hosts which means it will run on your localhost OR 
 IMPORTANT: Each client that uses firebase has a device ID unique to the system. You can NOT test the app correctly on localhost without making
 a few changes to the logic OR by replicating requests using cURL or POSTMan
 
-
-### Overview ###
-The app works using the following
-
-A page for the users to register
-* This page has been created to identify the users uniquely. You can use any pre-existing identification that the user is already registered with.
-
-A page for the users to send a message
-* This page opens up to a chatbox. If the user has keyed in a message previously, He/she will be greeted to it.
-* Otherwise, The page opens up to an empty chatbox.
-
-A page for the ADMINISTRATOR to view all the users and if he has any messages
-* As described, a list of users are displayed with clear indicators if he/she has sent a  message. 
-* When the admin clicks on any user to view the messages he is redirected to
-
-A page for the ADMINISTRATOR to read all the messages with the particular user.
+The application consists of 
+* A page for the user to register and send messages to the admin and receive messages from admin
+* A page for admin to view all user and whether anyone sent him a message
+* A page for admin to reply to the messages posted by sender. 
