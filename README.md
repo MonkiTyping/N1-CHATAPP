@@ -1,14 +1,3 @@
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
-
-Real time notifications are part of cloud messaging functions which are services provided by Google's Firebase, Which allows an Admin to send notifications
-by sending the userId and the message content that he/she has to be notified with to the firebase servers which will push the notification instantly.
-
-The chat-app itself is basic. You will need to add the code and integrate it into your application depending on your application. 
-This app uses the user's unique userId to sign the messages between the party and the recipient. You can use any such unique IDs to sign the chat messages.
-
 
 ### What is this repository for? ###
 
