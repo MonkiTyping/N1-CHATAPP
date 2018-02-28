@@ -32,7 +32,7 @@ var admin = require('./routes/admin')
 app.use('/chat',client)
 app.use('/admin',admin)
 
-app.listen(5000, (req,res)=>
+app.listen(3000, (req,res)=>
 {
     console.log("Server listening @ 5000")
 });
