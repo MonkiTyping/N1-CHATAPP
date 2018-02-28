@@ -73,15 +73,17 @@ router.post('/usernames',function(req,res)
             console.error(err)
             res.status(500).send("Internal Server Error")
         }
-        else if (found)
+        else if (found == undefined)
         {
             //If found the user, return exists
-            res.status(203).send("exists")
+            console.log("NEW")
+            res.status(203).send("new")
         }
         else
         {
             //else return new
-            res.status(200).send("new")
+            console.log("EXISTS")
+            res.status(200).send("exists")
         }
     });
 });
