@@ -34,5 +34,5 @@ app.use('/admin',admin)
 
 app.listen(5000, (req,res)=>
 {
-    console.log("Listening @ 5000")
+    console.log("Server listening @ 5000")
 });
